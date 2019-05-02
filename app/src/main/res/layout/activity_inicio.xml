@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/inicio"
+    tools:context="com.plantstechnology.produccion.Escaneado">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/asys"
+        android:id="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="false"/>
+
+    <LinearLayout
+        android:id="@+id/Botonera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/trabajoNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:onClick="TrabajoNormal"
+            android:text="Trabajo Normal" />
+
+        <Button
+            android:id="@+id/pausar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:onClick="Pausar"
+            android:text="pausar" />
+
+        <Button
+            android:id="@+id/reanudar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:onClick="Reanudar"
+            android:text="reanudar" />
+
+        <Button
+            android:id="@+id/retrabajo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:onClick="RPRTCD"
+            android:text="@string/rt_rp_cd" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <TextView
+            android:id="@+id/tversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </LinearLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Botonera"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="Ajustes"
+        app:srcCompat="@android:drawable/ic_menu_manage"
+        android:id="@+id/imageButton2" />
+
+    <ImageButton
+        android:id="@+id/Salir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_delete"
+        android:onClick="Exit"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
+
+</RelativeLayout>

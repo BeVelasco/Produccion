@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Produccion</string>
+    <string name="vacio">Vacio</string>
+    <string name="empezar">Empezar</string>
+    <string name="terminar">Terminar</string>
+    <string name="rt_rp_cd">RT, RP o CaDi</string>
+</resources>

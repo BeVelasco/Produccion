@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_resultado_otnormal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.plantstechnology.produccion.Resultado"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/textoEntrada">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="70dp"
+                app:srcCompat="@mipmap/asys"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="false"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:id="@+id/textModo"
+                android:layout_height="match_parent"
+                android:text="MODO"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="262dp"
+                    android:layout_height="44dp"
+                    android:id="@+id/operador"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="111dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.506"
+                    tools:layout_editor_absoluteY="10dp" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="260dp"
+                    android:layout_height="26dp"
+                    android:id="@+id/nomenclatura"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="134dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintVertical_bias="0.176" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="260dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/dibujo"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="157dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_bias="0.253" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="260dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/cantidad"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="180dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_bias="0.333" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="259dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/descripcion"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="203dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_bias="0.415"
+                    app:layout_constraintHorizontal_bias="0.506" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="261dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/prioridad"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="226dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0.506" />
+
+                <TextView
+                    android:text="@string/vacio"
+                    android:textSize="15dp"
+                    android:layout_width="261dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/maquina"
+                    tools:layout_conversion_absoluteX="124dp"
+                    tools:layout_conversion_absoluteY="249dp"
+                    tools:layout_conversion_absoluteWidth="136dp"
+                    tools:layout_conversion_absoluteHeight="18dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_bias="0.589"
+                    app:layout_constraintHorizontal_bias="0.506" />
+
+                <Spinner
+                    android:layout_width="253dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/selectOperacion"
+                    tools:layout_conversion_absoluteX="16dp"
+                    tools:layout_conversion_absoluteY="277dp"
+                    tools:layout_conversion_absoluteWidth="352dp"
+                    tools:layout_conversion_absoluteHeight="24dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0.469"
+                    app:layout_constraintVertical_bias="0.731"></Spinner>
+
+                <Spinner
+                    android:layout_width="253dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/selectPausa"
+                    tools:layout_conversion_absoluteX="16dp"
+                    tools:layout_conversion_absoluteY="277dp"
+                    tools:layout_conversion_absoluteWidth="352dp"
+                    tools:layout_conversion_absoluteHeight="24dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0.457"
+                    app:layout_constraintVertical_bias="0.858"></Spinner>
+
+                <EditText
+                    android:hint="Ingrese Descripción"
+                    android:layout_width="259dp"
+                    android:layout_height="42dp"
+                    android:id="@+id/textDescripcion"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    tools:layout_conversion_absoluteX="16dp"
+                    tools:layout_conversion_absoluteY="311dp"
+                    tools:layout_conversion_absoluteWidth="352dp"
+                    tools:layout_conversion_absoluteHeight="42dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0.506"
+                    app:layout_constraintVertical_bias="0.876" />
+
+
+                <RadioButton
+                    android:id="@+id/empezar"
+                    android:layout_width="89dp"
+                    android:layout_height="41dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="Empezar"
+                    android:text="@string/empezar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.035"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:layout_conversion_absoluteHeight="32dp"
+                    tools:layout_conversion_absoluteWidth="87dp"
+                    tools:layout_conversion_absoluteX="94dp"
+                    tools:layout_conversion_absoluteY="398dp" />
+
+                <RadioButton
+                    android:id="@+id/terminar"
+                    android:layout_width="89dp"
+                    android:layout_height="41dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="340dp"
+                    android:onClick="Terminar"
+                    android:text="@string/terminar"
+                    app:layout_constraintHorizontal_bias="0.919"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_conversion_absoluteHeight="32dp"
+                    tools:layout_conversion_absoluteWidth="88dp"
+                    tools:layout_conversion_absoluteX="201dp"
+                    tools:layout_conversion_absoluteY="398dp" />
+
+                <RadioButton
+                    android:id="@+id/aux"
+                    android:layout_width="105dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="340dp"
+                    android:onClick="auxretra"
+                    android:text="ReTrabajo"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/terminar"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/empezar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/btncancelar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="Cancelar"
+                    android:text="Cancelar" />
+
+                <Button
+                    android:id="@+id/btnenviar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:onClick="Enviar"
+                    android:text="Enviar" />
+
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
