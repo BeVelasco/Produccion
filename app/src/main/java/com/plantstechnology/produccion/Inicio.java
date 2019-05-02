@@ -118,6 +118,18 @@ public class Inicio extends AppCompatActivity  {
         finish();
     }
 
+    /* ************************************
+        Nueva funcionalidad para crear historicos de insidencias
+        Autor: Bernardo Velasco
+        Mayo 2019
+        **************************************/
+    public void insidencias(View view){
+        opcion = 5; //Indice utilizado para identificar en QR
+        Intent pausar = new Intent(Inicio.this, Escaneado.class);
+        pausar.putExtra("opcion", opcion);
+        startActivity(pausar);
+        finish();
+    }
 
     public void Exit(View view){
         setResult(RESULT_OK);

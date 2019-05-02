@@ -27,6 +27,11 @@ public class Escaneado extends AppCompatActivity implements ZXingScannerView.Res
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escaneado);
         opcion = getIntent().getExtras().getInt("opcion");
+        if (opcion != 5){
+            textBoton = "Escanear Operador";
+        }else{
+            textBoton = "Escanear OT";
+        }
     }
 
     @Override
