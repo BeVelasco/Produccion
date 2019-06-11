@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,16 +18,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,6 +55,7 @@ public class Resultado extends AppCompatActivity {
     String modo = "";
     String descripcion = "";
     String enpausa= "";
+    String idproceso = "";
 
 
     @SuppressLint("SetTextI18n")
@@ -60,6 +64,7 @@ public class Resultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
         informacion = getIntent().getExtras().getString("informacion");
+        idproceso = getIntent().getExtras().getString("idproceso");
 
         EditText descripcion0 = findViewById(R.id.textDescripcion);
         descripcion = descripcion0.getText().toString();
@@ -91,7 +96,8 @@ public class Resultado extends AppCompatActivity {
             ///////////////////////
 
             descri = separar[3];
-            priori = separar[4];
+//            priori = separar[4];
+            idproceso = separar[4];
 
             // Se separan las diferentes tareas dependiendo del la OT
             String opciones;
@@ -381,23 +387,71 @@ public class Resultado extends AppCompatActivity {
                 descripcion = desc.getText().toString();
             }
 
-            String palabras = "user/" + operador + "/time/" + fecha + "--" + hora + "/act/" + estado0 + "/maq/"
-                    + maquina + "/nomen/" + nomencl + "/dibu/" + dibu + "/canti/" + canti + "/descPz/"
-                    + descri + "/priori/" + priori + "/oper/" + operacion + "/descEscri/" + descripcion + " /";
+            JSONObject jo = new JSONObject();
+            jo.put("user", operador);
+            jo.put("time", fecha + "--" + hora);
+            jo.put("act", estado0);
+            jo.put("maq", maquina);
+            jo.put("nomen", nomencl);
+            jo.put("dibu", dibu);
+            jo.put("canti", canti);
+            jo.put("descPz", descri);
+            jo.put("priori", "1");
+            jo.put("oper",operacion);
+            if((estado0.equals("Pausa")) || (estado0.equals("Reanudar"))){
+                jo.put("descEscri", enpausa);
+            }else {
+                jo.put("descEscri", descripcion);
+            }
+            jo.put("idproceso", idproceso);
 
-            String palabrasr = "user/" + operador + "/time/" + fecha + "--" + hora + "/act/" + estado0 + "/maq/"
-                    + maquina + "/nomen/" + nomencl + "/dibu/" + dibu + "/canti/" + canti + "/descPz/"
-                    + descri + "/priori/" + priori + "/oper/" + operacion + "/descEscri/" + descripcion + " /r/"
-                    + estado0 +"/";
+//            String palabras = "{\"user\":\""+ operador +"\",\"time\":\""+ fecha + "--" + hora + "\",\"act':\"" + estado0 + "\",\"maq\":\""
+//                    + maquina + "\",\"nomen\":\"" + nomencl + "\",\"dibu\":\"" + dibu + "\",\"canti\":\"" + canti + "\",\"descPz\":\""
+//                    + descri + "\",\"priori\":\"1\",\"oper\":\"" + operacion + "\",\"descEscri\":\"" + descripcion + "\",\"idproceso\":\""
+//                    +idproceso+"\"}";
 
-            palabras = palabras.replace(" ", "%20");
-            palabrasr = palabrasr.replace(" ", "%20");
+
+            JSONObject jor = new JSONObject();
+            jor.put("user", operador);
+            jor.put("time", fecha + "--" + hora);
+            jor.put("act", estado0);
+            jor.put("maq", maquina);
+            jor.put("nomen", nomencl);
+            jor.put("dibu", dibu);
+            jor.put("canti", canti);
+            jor.put("descPz", descri);
+            jor.put("priori", "1");
+            jor.put("oper",operacion);
+            if((estado0.equals("Pausa")) || (estado0.equals("Reanudar"))){
+                jo.put("descEscri", enpausa);
+            }else {
+                jo.put("descEscri", descripcion);
+            }
+            jor.put("r",estado0);
+            jor.put("idproceso", idproceso);
+
+//            String palabrasr = "{\"user\":\"" + operador + "\",\"time\":\"" + fecha + "--" + hora + "\",\"act\":\"" + estado0 + "\",\"maq\":\""
+//                    + maquina + "\",\"nomen\":\"" + nomencl + "\",\"dibu\":\"" + dibu + "\",\"canti\":\"" + canti + "\",\"descPz\":\""
+//                    + descri + "\",\"priori\":\"1\",\"oper\":\"" + operacion + "\",\"descEscri\":\"" + descripcion + "\"r\":\""
+//                    + estado0 +"\", \"idproceso\"   :"+idproceso+"\"}";
+
+//            String palabras = "user/" + operador + "/time/" + fecha + "--" + hora + "/act/" + estado0 + "/maq/"
+//                    + maquina + "/nomen/" + nomencl + "/dibu/" + dibu + "/canti/" + canti + "/descPz/"
+//                    + descri + "/priori/" + priori + "/oper/" + operacion + "/descEscri/" + descripcion + " /";
+//
+//            String palabrasr = "user/" + operador + "/time/" + fecha + "--" + hora + "/act/" + estado0 + "/maq/"
+//                    + maquina + "/nomen/" + nomencl + "/dibu/" + dibu + "/canti/" + canti + "/descPz/"
+//                    + descri + "/priori/" + priori + "/oper/" + operacion + "/descEscri/" + descripcion + " /r/"
+//                    + estado0 +"/";
+
+            //palabras = palabras.replace(" ", "%20");
+            //palabrasr = palabrasr.replace(" ", "%20");
             String resultado = "";
 
             if((estado0.equals("RT")) || (estado0.equals("RP")) || (estado0.equals("CaDi"))) {
-                resultado = resultadosGoogleRTRPCD(palabrasr);
+                resultado = resultadosGoogleRTRPCD(jor);
             }else {
-                resultado = resultadosGoogle(palabras);
+                resultado = resultadosGoogle(jo);
                 //salida.append(palabras + "--" + resultado + "\n");
             }
 
@@ -431,7 +485,7 @@ public class Resultado extends AppCompatActivity {
     }
 
     //////////////////////////////////////////////////////////////////
-    String resultadosGoogle(String palabras) throws Exception {
+    String resultadosGoogle(JSONObject jo) throws Exception {
         String devuelve = "";
         HttpURLConnection conexion = null;
 
@@ -440,12 +494,36 @@ public class Resultado extends AppCompatActivity {
         //String eee = "http://asys.selfip.net/GJ/api/WS/on/" + palabras;
         Inicio.classGlobal global = (Inicio.classGlobal) getApplication();
         //String eee = "http://"+global.getIp_save()+"/GJ/api/WS/on/" + palabras;
-        String eee = "http://"+global.getIp_save()+"/GJ/api/WS/on/" + palabras;
+        String eee = "http://"+global.getIp_save()+"/api/app/registro";
         URL url = new URL(eee);
         ///////////////////////////////////////////////////////////
 
         try {
             conexion = (HttpURLConnection) url.openConnection();
+            conexion.setDoOutput(true);
+            conexion.setRequestMethod("PUT");
+            conexion.setRequestProperty("Content-Type", "application/json");
+
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("data", jo.toString());
+
+            Log.i("JSON", jo.toString());
+
+            DataOutputStream os = null;
+            try {
+                os = new DataOutputStream(conexion.getOutputStream());
+            }catch (IOException e){
+                Log.i("Stream", e.getMessage());
+            }
+            //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+            os.writeBytes(jo.toString());
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conexion.getResponseCode()));
+            Log.i("MSG" , conexion.getResponseMessage());
+
             String sss = conexion.getResponseMessage();
 
         if (conexion.getResponseCode()==HttpURLConnection.HTTP_OK ) {
@@ -461,9 +539,11 @@ public class Resultado extends AppCompatActivity {
                     result.append(line);
                 }
 
+                Log.i("Result ", result.toString());
                 JSONObject obj = new JSONObject(result.toString());
 
-                Toast t2 = Toast.makeText(this, "INFO : " + getmessjson(obj), Toast.LENGTH_LONG);
+
+                Toast t2 = Toast.makeText(this, getmessjson(obj), Toast.LENGTH_LONG);
                 t2.show();
 
             }else {
@@ -487,6 +567,7 @@ public class Resultado extends AppCompatActivity {
                 t2.show();
             }
         }catch (Exception e){
+                Log.i("Error : ", e.getMessage());
                 Toast t1 = Toast.makeText(this, "Servidor no encontrado. Verificar la conexión y/o datos de configuración ("+global.getIp_save()+")", Toast.LENGTH_SHORT);
                 t1.show();
             }
@@ -496,18 +577,45 @@ public class Resultado extends AppCompatActivity {
     }
 
     //////////////////////////////////////////////////////////////////
-    String resultadosGoogleRTRPCD(String palabras) throws Exception {
+    String resultadosGoogleRTRPCD(JSONObject jor) throws Exception {
         String devuelve = "";
         HttpURLConnection conexion = null;
 
         ///////////////////// pagina //////////////////////////////
+        //URL url = new URL("http://promkt.com.mx/testing/api/WS/on/" + palabras);
+        //String eee = "http://asys.selfip.net/GJ/api/WS/on/" + palabras;
         Inicio.classGlobal global = (Inicio.classGlobal) getApplication();
-        String eee = "http://"+global.getIp_save()+"/GJ/api/WS/rtrpcd/" + palabras;
+        //String eee = "http://"+global.getIp_save()+"/GJ/api/WS/on/" + palabras;
+        String eee = "http://"+global.getIp_save()+"/api/app/rtrpcd";
         URL url = new URL(eee);
         ///////////////////////////////////////////////////////////
 
         try {
             conexion = (HttpURLConnection) url.openConnection();
+            conexion.setDoOutput(true);
+            conexion.setRequestMethod("PUT");
+            conexion.setRequestProperty("Content-Type", "application/json");
+
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("data", jor.toString());
+            Log.i("JSON", jor.toString());
+
+            DataOutputStream os = null;
+            try {
+                os = new DataOutputStream(conexion.getOutputStream());
+            }catch (IOException e){
+                Log.i("Stream", e.getMessage());
+            }
+            //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+            os.writeBytes(jor.toString());
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUSR", String.valueOf(conexion.getResponseCode()));
+            Log.i("MSGR" , conexion.getResponseMessage());
+
+            String sss = conexion.getResponseMessage();
 
             if (conexion.getResponseCode()==HttpURLConnection.HTTP_OK ) {
                 devuelve = conexion.getResponseMessage();
@@ -524,7 +632,7 @@ public class Resultado extends AppCompatActivity {
 
                 JSONObject obj = new JSONObject(result.toString());
 
-                Toast t2 = Toast.makeText(this, "INFO : " + getmessjson(obj), Toast.LENGTH_LONG);
+                Toast t2 = Toast.makeText(this, getmessjson(obj), Toast.LENGTH_LONG);
                 t2.show();
 
             }else {
@@ -564,9 +672,9 @@ public class Resultado extends AppCompatActivity {
             if (urlresponse == 10) {
                 messresp = "Actividad ya registrada : "+obj.get("ultact");
             } else if (urlresponse == 1) {
-                messresp = "Registro Exitoso : "+obj.get("ultact");
+                messresp = "Registro Exitoso";
             } else if (urlresponse == 0) {
-                messresp = "Error General: " + obj.getString("ultact");
+                messresp = obj.getString("ultact");
             } else if (urlresponse == 11) {
                 messresp = "Proyecto Finalizado : "+obj.get("ultact");
             } else{

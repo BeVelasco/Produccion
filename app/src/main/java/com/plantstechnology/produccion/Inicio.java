@@ -7,14 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +53,7 @@ public class Inicio extends AppCompatActivity  {
 
         public String getUser_save(){
             SharedPreferences conf = getSharedPreferences("config.txt", Context.MODE_PRIVATE);
-            String user_recuperado = conf.getString("duser","mantenimiento");
+            String user_recuperado = conf.getString("duser","admin");
             return user_recuperado;
         }
 
@@ -71,7 +67,7 @@ public class Inicio extends AppCompatActivity  {
 
         public String getClave_save(){
             SharedPreferences conf = getSharedPreferences("config.txt", Context.MODE_PRIVATE);
-            String clave_recuperada = conf.getString("dclave","default");
+            String clave_recuperada = conf.getString("dclave","123");
             return  clave_recuperada;
         }
     }
@@ -81,7 +77,7 @@ public class Inicio extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        String versionName = "Version "+BuildConfig.VERSION_NAME;
+        String versionName = "2019 \u00A9 Version "+BuildConfig.VERSION_NAME;
         TextView tversion = (TextView) findViewById(R.id.tversion);
         tversion.setText(versionName);
     }
